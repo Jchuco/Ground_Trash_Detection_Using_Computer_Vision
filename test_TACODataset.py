@@ -1,8 +1,5 @@
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
-import torch
-from torch.utils.data import DataLoader
 from src.data_preprocessing import TACODataset
 import unittest
 

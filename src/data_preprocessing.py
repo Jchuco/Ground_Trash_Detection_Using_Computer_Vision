@@ -10,7 +10,7 @@ import torch
 class TACODataset(Dataset):
     def __init__(self, root_dir, annotation_file, transform=None, augment=False):
         self.root_dir = root_dir
-        self.coco = COCO(annotation_file)
+        self.coco = COCO(annotation_file) # Os prints vem daqui
         self.image_ids = list(self.coco.imgs.keys())
         self.transform = transform
         self.augment = augment
@@ -75,7 +75,6 @@ class TACODataset(Dataset):
             for box, label in zip(augmented['bboxes'], augmented['labels']):
                 x, y, w, h = box
                 
-                # Corrige valores fora dos limites
                 x = max(0, min(x, aug_width - 1))
                 y = max(0, min(y, aug_height - 1))
                 w = max(1, min(w, aug_width - x))
