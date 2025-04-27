@@ -1,0 +1,5 @@
+train_images: "./data/"
+train_annotations: "./data/annotations.json"
+val_images: "./data/"
+val_annotations: "./data/annotations.json"
+batch_size: 10
