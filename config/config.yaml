@@ -3,3 +3,18 @@ train_annotations: "./data/annotations.json"
 val_images: "./data/"
 val_annotations: "./data/annotations.json"
 batch_size: 10
+
+train:
+  batch_size: 10
+  num_epochs: 10
+  learning_rate: 0.001
+
+dataset:
+  root_dir: "./data/"
+  annotation_file: "./data/annotations.json"
+
+model:
+  name: "fasterrcnn_resnet50_fpn"
+  pretrained: true
+
+output_dir: "./models/trained_models/"
