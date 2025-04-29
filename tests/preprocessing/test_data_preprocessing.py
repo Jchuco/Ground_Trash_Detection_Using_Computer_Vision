@@ -2,7 +2,7 @@ import yaml
 from src.data_preprocessing import create_data_loaders
 import unittest
 
-config_path = "./config.yaml"
+config_path = "./config/config.yaml"
 
 class TestDataPrepocessing(unittest.TestCase):
     
