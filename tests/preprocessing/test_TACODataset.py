@@ -1,4 +1,3 @@
-import cv2
 import numpy as np
 from src.data_preprocessing import TACODataset
 import unittest
