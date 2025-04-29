@@ -14,7 +14,9 @@ dataset:
   annotation_file: "./data/annotations.json"
 
 model:
-  name: "fasterrcnn_resnet50_fpn"
+  name: "ssdlite320_mobilenet_v3_large" #"fasterrcnn_resnet50_fpn"
   pretrained: true
+  num_classes: num_classes = 29  # 28 classes de lixo + 1 classe de background 
+  #subconjunto num_classes = 6  # 5 classes de lixo + 1 de background
 
 output_dir: "./models/trained_models/"

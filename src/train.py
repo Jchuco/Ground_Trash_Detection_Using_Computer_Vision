@@ -1,9 +1,10 @@
 import os
 import yaml
 import torch
-from torchvision.models.detection import fasterrcnn_resnet50_fpn
+from torchvision.models.detection import ssdlite320_mobilenet_v3_large
+from torchvision.models.detection import SSDLite320_MobileNet_V3_Large_Weights
 from torch.utils.data import DataLoader
-from src.data_preprocessing import TACODataset  
+from data_preprocessing import TACODataset  
 from torchvision import transforms
 
 # Carregar configuração
@@ -21,7 +22,10 @@ dataset = TACODataset(
 dataloader = DataLoader(dataset, batch_size=config['train']['batch_size'], shuffle=True, collate_fn=lambda x: tuple(zip(*x)))
 
 # Inicializar modelo
-model = fasterrcnn_resnet50_fpn(pretrained=config['model']['pretrained'])
+#model = fasterrcnn_resnet50_fpn(pretrained=config['model']['pretrained'])
+weights = SSDLite320_MobileNet_V3_Large_Weights.DEFAULT
+model = ssdlite320_mobilenet_v3_large(weights=weights)
+#model = ssdlite320_mobilenet_v3_large(pretrained=config['model']['pretrained'])
 model.train()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
