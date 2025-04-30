@@ -1,4 +1,5 @@
 import numpy as np
+from torch import Tensor
 from src.data_preprocessing import TACODataset
 import unittest
 
@@ -19,7 +20,7 @@ class TestTacoDataset(unittest.TestCase):
         sample = dataset[0]
         image, target = sample
         
-        assert type(image) == np.ndarray
+        assert type(image) == Tensor
         assert len(target.keys()) == 3
         assert 'boxes' in target
         assert 'labels' in target
