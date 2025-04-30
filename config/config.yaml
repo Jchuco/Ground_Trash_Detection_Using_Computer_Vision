@@ -1,23 +1,22 @@
 dataset:
   root_dir: "./data/"
-  annotation_file: "./data/annotations.json"
+  annotation_file: "./data/annotations_5classes.json"
 
 train:
   batch_size: 10
   num_epochs: 10
   learning_rate: 0.001
   images: "./data/"
-  annotations: "./data/annotations.json"
+  annotations: "./data/annotations_5classes.json"
 
 val:
   batch_size: 10
   images: "./data/"
-  annotations: "./data/annotations.json"
+  annotations: "./data/annotations_5classes.json"
 
 model:
   name: "ssdlite320_mobilenet_v3_large" #"fasterrcnn_resnet50_fpn"
   pretrained: true
-  num_classes: num_classes = 29  # 28 classes de lixo + 1 classe de background 
-  #subconjunto num_classes = 6  # 5 classes de lixo + 1 de background
+  num_classes: num_classes = 5
 
 output_dir: "./models/trained_models/"
