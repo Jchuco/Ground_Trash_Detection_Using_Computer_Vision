@@ -1,5 +1,5 @@
 import yaml
-from src.data_preprocessing import create_data_loaders
+from data_preprocessing_SSD import create_data_loaders
 import unittest
 
 config_path = "./config/config.yaml"
