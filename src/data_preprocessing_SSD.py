@@ -11,6 +11,16 @@ import torchvision.transforms.functional as F
 
 
 class TACODataset(Dataset):
+    """
+    A PyTorch Dataset class for loading and processing TACO dataset (COCO format) with optional augmentations.
+    
+    Args:
+        root_dir (str): Path to the root directory containing images
+        annotation_file (str): Path to COCO format annotation JSON file
+        transform (albumentations.Compose): Transformations to apply to images
+        augment (bool): Whether to apply data augmentation (default: False)
+    """
+    
     def __init__(self, root_dir, annotation_file, transform=None, augment=False):
         self.root_dir = root_dir
         self.coco = COCO(annotation_file)
@@ -35,9 +45,22 @@ class TACODataset(Dataset):
         ))
 
     def __len__(self):
+        """Returns the total number of images in the dataset."""
         return len(self.image_ids)
 
     def __getitem__(self, idx):
+        """
+        Loads and processes a single image and its annotations.
+        
+        Args:
+            idx (int): Index of the image to load
+            
+        Returns:
+            tuple: (image_tensor, target_dict) where target_dict contains:
+                - boxes: Normalized bounding boxes [x_min, y_min, x_max, y_max]
+                - labels: Class labels for each box
+                - image_id: Original image ID
+        """
         img_id = self.image_ids[idx]
         img_info = self.coco.loadImgs(img_id)[0]
         img_path = os.path.join(self.root_dir, img_info['file_name'])
@@ -110,6 +133,15 @@ class TACODataset(Dataset):
 
 
 def create_data_loaders(config_path):
+    """
+    Creates training and validation data loaders from configuration.
+    
+    Args:
+        config_path (str): Path to YAML configuration file
+        
+    Returns:
+        tuple: (train_loader, val_loader) PyTorch DataLoader instances
+    """
     with open(config_path) as f:
         config = yaml.safe_load(f)
 

@@ -1,6 +1,16 @@
 import json
 
 def guess_superclass(name):
+
+    """
+    Categorize waste items into material superclasses based on keywords.
+
+    Args:
+        name (str): The name of the waste item to categorize.
+
+    Returns:
+        str: The superclass ('plastic', 'glass', 'metal', 'paper', or 'other').
+    """
     name_lower = name.lower()
     
     superclass_keywords = {
@@ -25,6 +35,14 @@ superclass_to_id = {
 }
 
 def merge_classes_to_superclasses(input_json_path, output_json_path):
+    """
+    Converts a COCO-style JSON dataset with fine-grained waste categories into a simplified version
+    with 5 superclasses (plastic, paper, metal, glass, other).
+
+    Args:
+        input_json_path (str): Path to the input JSON file (original annotations).
+        output_json_path (str): Path to save the output JSON file (simplified annotations).
+    """
     with open(input_json_path, 'r') as f:
         data = json.load(f)
 
