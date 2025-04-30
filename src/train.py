@@ -4,7 +4,7 @@ import torch
 from torchvision.models.detection import ssdlite320_mobilenet_v3_large
 from torchvision.models.detection import SSDLite320_MobileNet_V3_Large_Weights
 from torch.utils.data import DataLoader
-from data_preprocessing import TACODataset  
+from data_preprocessing_SSD import TACODataset  
 from torchvision import transforms
 
 # Carregar configuração

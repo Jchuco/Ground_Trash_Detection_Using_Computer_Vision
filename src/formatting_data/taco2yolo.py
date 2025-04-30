@@ -1,38 +1,14 @@
-import json
+from pylabel import importer
 import os
-import yaml
 
-config_path = "./config/config.yaml"
+path_to_annotations = "./data/annotations_5classes.json"
+path_to_images = "./data"
 
-with open(config_path) as f:
-    config = yaml.safe_load(f)
-    
-root_dir = config['dataset']['root_dir']
-    
-with open(config['dataset']['annotation_file'], "r") as f:
-    data = json.load(f)
+dataset = importer.ImportCoco(path_to_annotations, path_to_images=path_to_images, name="BCCD_coco")
 
-image_id_to_path = {}
-for image in data["images"]:
-    batch = image["file_name"].split("/")[0]
-    img_name = os.path.basename(image["file_name"])
-    image_id_to_path[image["id"]] = os.path.join("./data", batch, img_name)
+for i in range(1, 16):
+    p = f'./data/labels/batch_{i}'
+    os.makedirs(p, exist_ok=True)
 
-for ann in data["annotations"]:
-    image_path = image_id_to_path[ann["image_id"]]
-    txt_path = os.path.splitext(image_path)[0] + ".txt"
-    
-
-    x_min, y_min, w, h = ann["bbox"]
-    class_id = ann["category_id"] - 1
-
-    img_info = next(img for img in data["images"] if img["id"] == ann["image_id"])
-    img_w, img_h = img_info["width"], img_info["height"]
-
-    x_center = (x_min + w / 2) / img_w
-    y_center = (y_min + h / 2) / img_h
-    width_norm = w / img_w
-    height_norm = h / img_h
-
-    with open(txt_path, "a") as f:
-        f.write(f"{class_id} {x_center:.6f} {y_center:.6f} {width_norm:.6f} {height_norm:.6f}\n")
+dataset.path_to_annotations = "./data"
+dataset.export.ExportToYoloV5(output_path = "./data/labels")[0]
