@@ -1,7 +1,7 @@
 import json
 
-def guess_superclass(name):
 
+def guess_superclass(name):
     """
     Categorize waste items into material superclasses based on keywords.
 
@@ -12,19 +12,20 @@ def guess_superclass(name):
         str: The superclass ('plastic', 'glass', 'metal', 'paper', or 'other').
     """
     name_lower = name.lower()
-    
+
     superclass_keywords = {
         'plastic': {'plastic', 'styrofoam'},
         'glass': {'glass', 'bottle', 'jar', 'window', 'mirror'},
         'metal': {'metal', 'aluminium', 'steel', 'can', 'pop tab'},
         'paper': {'paper', 'cardboard', 'carton', 'newspaper', 'magazine', 'carded'},
     }
-    
+
     for superclass, keywords in superclass_keywords.items():
         if any(keyword in name_lower for keyword in keywords):
             return superclass
-    
+
     return 'other'
+
 
 superclass_to_id = {
     'plastic': 0,
@@ -33,6 +34,7 @@ superclass_to_id = {
     'glass': 3,
     'other': 4
 }
+
 
 def merge_classes_to_superclasses(input_json_path, output_json_path):
     """
@@ -52,7 +54,6 @@ def merge_classes_to_superclasses(input_json_path, output_json_path):
         name = category['name']
         supercat = guess_superclass(name)
         id_to_superclass[old_id] = superclass_to_id[supercat]
-
 
     new_categories = [
         {'id': 0, 'name': 'plastic', 'supercategory': 'plastic'},
@@ -77,4 +78,3 @@ def merge_classes_to_superclasses(input_json_path, output_json_path):
 
     with open(output_json_path, 'w') as f:
         json.dump(new_data, f, indent=2)
-

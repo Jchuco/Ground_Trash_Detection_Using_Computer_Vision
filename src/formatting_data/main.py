@@ -1,21 +1,20 @@
-from formatting_data.taco2yolo import taco2yolo
-from formatting_data.merge_classes import merge_classes_to_superclasses
+from src.formatting_data.taco2yolo import taco2yolo
+from src.formatting_data.merge_classes import merge_classes_to_superclasses
 import os
-import yaml
+from src.utils import get_config
 
 config_path = "./config/config.yaml"
 
-with open(config_path) as f:
-    config = yaml.safe_load(f)
+config = get_config(config_path)
 
 path_to_annotations = config['dataset']['annotation_file']
 path_to_images = config['dataset']['root_dir']
-path_to_new_annotations = config['dataset']['root_dir']
+path_to_new_annotations = "./data"
 output_path = f"{config['dataset']['root_dir']}/labels"
 
 merge_classes_to_superclasses(
     input_json_path=f"{config['dataset']['root_dir']}/annotations.json",
-    output_json_path = path_to_annotations
+    output_json_path=path_to_annotations
 )
 
 for i in range(1, 16):

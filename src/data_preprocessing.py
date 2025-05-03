@@ -1,13 +1,12 @@
 import os
-import yaml
 from torch.utils.data import DataLoader
 import cv2
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from torch.utils.data import Dataset
-from pycocotools.coco import COCO
 import torch
 import torchvision.transforms.functional as F
+from src.utils import get_config
 
 
 class TACODataset(Dataset):
@@ -93,8 +92,7 @@ class TACODataset(Dataset):
 
 
 def create_data_loaders(config_path):
-    with open(config_path) as f:
-        config = yaml.safe_load(f)
+    config = get_config(config_path)
 
     transform = A.Compose([
         A.Resize(height=416, width=416),
