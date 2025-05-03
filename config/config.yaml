@@ -1,22 +1,28 @@
+dataset_original:
+  root_dir: ./data
+  images: ./data/images
+  annotation_file: ./data/annotation_5class.json
+
 dataset:
-  root_dir: "./data"
-  annotation_file: "./data/annotations_5classes.json"
+  root_dir: ./dataset
+  dataset: ./dataset/dataset.yaml
 
 train:
+  root_dir: ./dataset/train
   batch_size: 10
   num_epochs: 10
   learning_rate: 0.001
-  images: "./data/images"
-  annotations: "./data/annotations_5classes.json"
+  images: ./dataset/images/train
+  labels: ./dataset/labels/train
 
 val:
+  root_dir: ./dataset/test
   batch_size: 10
-  images: "./data/images"
-  annotations: "./data/annotations_5classes.json"
+  images: ./dataset/images/test
+  labels: ./dataset/labels/test
 
 model:
-  name: #./models/# "ssdlite320_mobilenet_v3_large" #"fasterrcnn_resnet50_fpn"
+  name: ./models/yolov8n.pt
   pretrained: true
   num_classes: num_classes = 5
-
-output_dir: "./models/trained_models/"
+output_dir: ./models/trained_models/
