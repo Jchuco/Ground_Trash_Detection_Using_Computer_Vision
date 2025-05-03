@@ -1,24 +1,31 @@
+from pathlib import Path
 from src.formatting_data.taco2yolo import taco2yolo
 from src.formatting_data.merge_classes import merge_classes_to_superclasses
-import os
 from src.utils import get_config
 
 config_path = "./config/config.yaml"
 
 config = get_config(config_path)
 
-path_to_annotations = config['dataset']['annotation_file']
-path_to_images = config['dataset']['root_dir']
-path_to_new_annotations = "./data"
-output_path = f"{config['dataset']['root_dir']}/labels"
+root_dir = config['dataset_original']['root_dir']
+path_to_annotations = config['dataset_original']['annotation_file']
+original_images_dir = config['dataset_original']['images']
 
 merge_classes_to_superclasses(
-    input_json_path=f"{config['dataset']['root_dir']}/annotations.json",
-    output_json_path=path_to_annotations
+    input_json_path=f"{root_dir}/annotations.json",
+    output_json_path=path_to_annotations,
+    images_dir=f"{root_dir}/images_original",
+    output_images_dir=original_images_dir
 )
 
-for i in range(1, 16):
-    p = f'{output_path}/batch_{i}'
-    os.makedirs(p, exist_ok=True)
+train_dir = config['train']['labels']
+val_dir = config['val']['labels']
+new_root_dir = config['dataset']['root_dir']
 
-taco2yolo(path_to_annotations, path_to_images, path_to_new_annotations, output_path)
+for i_dir in [train_dir, val_dir]:
+    a = Path(i_dir)
+    a.mkdir(parents=True, exist_ok=True)
+
+
+taco2yolo(path_to_annotations, original_images_dir, f"{new_root_dir}/labels")
+

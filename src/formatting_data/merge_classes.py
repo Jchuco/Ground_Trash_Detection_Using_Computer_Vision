@@ -1,4 +1,6 @@
 import json
+import os
+import shutil
 
 
 def guess_superclass(name):
@@ -36,14 +38,17 @@ superclass_to_id = {
 }
 
 
-def merge_classes_to_superclasses(input_json_path, output_json_path):
+def merge_classes_to_superclasses(input_json_path, output_json_path, images_dir, output_images_dir):
     """
     Converts a COCO-style JSON dataset with fine-grained waste categories into a simplified version
     with 5 superclasses (plastic, paper, metal, glass, other).
+    This function renames the image files and copies them to a new directory.
 
     Args:
         input_json_path (str): Path to the input JSON file (original annotations).
         output_json_path (str): Path to save the output JSON file (simplified annotations).
+        images_dir (str): Directory containing the original images.
+        output_images_dir (str): Directory to save the renamed images.
     """
     with open(input_json_path, 'r') as f:
         data = json.load(f)
@@ -68,10 +73,21 @@ def merge_classes_to_superclasses(input_json_path, output_json_path):
         ann['category_id'] = id_to_superclass[ann['category_id']]
         new_annotations.append(ann)
 
+    new_images = []
+    os.makedirs(output_images_dir, exist_ok=True)
+    for image in data['images']:
+        old_path = image['file_name']
+        new_path = old_path.replace('/', '_')
+        image['file_name'] = new_path
+        new_images.append(image)
+
+        if os.path.exists(f"{images_dir}/{old_path}"):
+            shutil.copy2(f"{images_dir}/{old_path}", f"{output_images_dir}/{new_path}")
+
     new_data = {
         'info': data.get('info', {}),
         'licenses': data.get('licenses', []),
-        'images': data['images'],
+        'images': new_images,
         'annotations': new_annotations,
         'categories': new_categories
     }
