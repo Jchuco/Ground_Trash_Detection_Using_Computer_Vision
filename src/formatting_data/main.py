@@ -29,3 +29,14 @@ for i_dir in [train_dir, val_dir]:
 
 taco2yolo(path_to_annotations, original_images_dir, f"{new_root_dir}/labels")
 
+import yaml
+
+with open(config_path, 'r') as file:
+    config = yaml.safe_load(file)
+dataset = config['dataset']['dataset']
+with open(dataset, 'r') as file:
+    data = yaml.safe_load(file)
+data['path'] = "../Trabalho_ap"
+with open(dataset, 'w') as file:
+    yaml.dump(data, file)
+
