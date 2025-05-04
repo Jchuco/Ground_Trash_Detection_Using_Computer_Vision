@@ -15,7 +15,7 @@ model.train(
     batch=16,
     imgsz=640,
     # Augmentations
-    hsv_h=0.015,  # Hue shift
+    hsv_h=0.015,   # Hue shift
     hsv_s=0.7,     # Saturation shift
     hsv_v=0.4,     # Value shift
     flipud=0.5,    # Vertical flip probability
@@ -31,7 +31,7 @@ model.train(
     imgsz=640,
     cos_lr=True,
     # Augmentations
-    hsv_h=0.015,  # Hue shift
+    hsv_h=0.015,   # Hue shift
     hsv_s=0.7,     # Saturation shift
     hsv_v=0.4,     # Value shift
     flipud=0.5,    # Vertical flip probability
@@ -46,7 +46,7 @@ model.train(
     batch=16,
     imgsz=640,
     # Augmentations
-    hsv_h=0.015,  # Hue shift
+    hsv_h=0.015,   # Hue shift
     hsv_s=0.7,     # Saturation shift
     hsv_v=0.4,     # Value shift
     flipud=0.5,    # Vertical flip probability

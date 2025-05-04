@@ -1,7 +1,9 @@
+import os
 from pathlib import Path
 from src.formatting_data.taco2yolo import taco2yolo
 from src.formatting_data.merge_classes import merge_classes_to_superclasses
 from src.utils import get_config
+import yaml
 
 config_path = "./config/config.yaml"
 
@@ -29,14 +31,10 @@ for i_dir in [train_dir, val_dir]:
 
 taco2yolo(path_to_annotations, original_images_dir, f"{new_root_dir}/labels")
 
-import yaml
 
-with open(config_path, 'r') as file:
-    config = yaml.safe_load(file)
 dataset = config['dataset']['dataset']
 with open(dataset, 'r') as file:
     data = yaml.safe_load(file)
-data['path'] = "../Trabalho_ap"
+data['path'] = f"../{Path.cwd().parts[-1]}"  # current path
 with open(dataset, 'w') as file:
     yaml.dump(data, file)
-
