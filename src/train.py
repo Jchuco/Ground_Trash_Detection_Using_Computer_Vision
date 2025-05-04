@@ -6,8 +6,6 @@ config = get_config("config/config.yaml")
 model = YOLO(config['model']['name'])
 
 dataset = config['dataset']['dataset']
-print("Phase 1: Training head only")
-
 
 model.train(
     data=dataset,
