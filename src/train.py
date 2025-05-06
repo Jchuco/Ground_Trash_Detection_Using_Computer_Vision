@@ -12,8 +12,6 @@ model.train(
     epochs=20,
     lr0=1e-3,
     freeze=10,
-    batch=16,
-    imgsz=640,
     # Augmentations
     hsv_h=0.015,   # Hue shift
     hsv_s=0.7,     # Saturation shift
@@ -27,8 +25,6 @@ model.train(
     epochs=40,
     lr0=5e-4,
     freeze=8,
-    batch=16,
-    imgsz=640,
     cos_lr=True,
     # Augmentations
     hsv_h=0.015,   # Hue shift
@@ -43,8 +39,6 @@ model.train(
     epochs=40,
     lr0=1e-4,
     freeze=0,
-    batch=16,
-    imgsz=640,
     # Augmentations
     hsv_h=0.015,   # Hue shift
     hsv_s=0.7,     # Saturation shift
