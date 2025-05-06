@@ -17,7 +17,7 @@ def guess_superclass(name):
 
     superclass_keywords = {
         'plastic': {'plastic', 'styrofoam'},
-        'glass': {'glass', 'bottle', 'jar', 'window', 'mirror'},
+        'glass': {'glass', 'jar', 'window', 'mirror'},
         'metal': {'metal', 'aluminium', 'steel', 'can', 'pop tab'},
         'paper': {'paper', 'cardboard', 'carton', 'newspaper', 'magazine', 'carded'},
     }
