@@ -9,20 +9,12 @@ dataset:
 
 train:
   root_dir: ./dataset/train
-  batch_size: 10
-  num_epochs: 10
-  learning_rate: 0.001
   images: ./dataset/images/train
   labels: ./dataset/labels/train
 
-val:
-  root_dir: ./dataset/test
-  batch_size: 10
-  images: ./dataset/images/test
-  labels: ./dataset/labels/test
-
 model:
   name: ./models/yolov8n.pt
-  pretrained: true
-  num_classes: num_classes = 5
+
+model_best:
+  name: ./models/best.pt
 output_dir: ./models/trained_models/

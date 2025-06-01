@@ -13,5 +13,5 @@ def taco2yolo(path_to_annotations, path_to_images, output_path):
     """
     dataset = importer.ImportCoco(path_to_annotations, path_to_images=path_to_images, name="TACODataset")
     dataset.path_to_annotations = ""
-    dataset.splitter.GroupShuffleSplit(train_pct=0.8, val_pct=0, test_pct=0.2)
+    dataset.splitter.GroupShuffleSplit(train_pct=0.7, val_pct=0.1, test_pct=0.2)
     dataset.export.ExportToYoloV5(output_path=output_path, use_splits=True, copy_images=True)

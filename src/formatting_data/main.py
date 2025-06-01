@@ -32,3 +32,4 @@ with open(dataset, 'r') as file:
 data['path'] = f"../{Path.cwd().parts[-1]}"  # Root directory
 with open(dataset, 'w') as file:
     yaml.dump(data, file)
+
