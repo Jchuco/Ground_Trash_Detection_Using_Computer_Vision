@@ -49,5 +49,5 @@ in detecting small objects like glass.
 - Integrate Edge AI for faster predictions.
 - Deploy on mobile robots for automated street cleaning.
 
-For details, refer to the full [project paper](./docs/Final_Report-Grupo3.pdf) in the repository. 
+For details, refer to the full [project paper](./docs/Ground_Trash_Detection_Using_Computer_Vision_paper.pdf) in the repository. 
 This project is inspired by advancements in waste detection and aims to contribute to cleaner urban environments.
