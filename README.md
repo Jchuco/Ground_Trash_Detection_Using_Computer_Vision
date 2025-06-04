@@ -50,4 +50,11 @@ in detecting small objects like glass.
 - Deploy on mobile robots for automated street cleaning.
 
 For details, refer to the full [project paper](./docs/Ground_Trash_Detection_Using_Computer_Vision_paper.pdf) in the repository. 
-This project is inspired by advancements in waste detection and aims to contribute to cleaner urban environments.
+This project is inspired by advancements in waste detection and aims to 
+contribute to cleaner urban environments.
+
+## Authors
+Project developed by:
+- Frederico Correia Cerqueira
+- Joana Chuço
+- Gonçalo Abreu
