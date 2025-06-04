@@ -25,5 +25,4 @@ model.train(
     fliplr=0.5,    # Horizontal flip probability
     degrees=10,    # Rotation degrees
     scale=0.5,     # Scale augmentation
-
 )
